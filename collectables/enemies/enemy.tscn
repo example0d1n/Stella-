@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://b2heauoc5crg8"]
+
+[ext_resource type="Script" uid="uid://dl61refkjpl5u" path="res://collectables/enemies/drill_enemy.gd" id="1_iblxw"]
+[ext_resource type="Texture2D" uid="uid://c21xn3q7qfnyb" path="res://platform stuff/kenney_pixel-platformer/Tilemap/tilemap-characters_packed.png" id="1_ixyax"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iblxw"]
+atlas = ExtResource("1_ixyax")
+region = Rect2(144, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6ygn"]
+atlas = ExtResource("1_ixyax")
+region = Rect2(168, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j83xw"]
+atlas = ExtResource("1_ixyax")
+region = Rect2(192, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86yb8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iblxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6ygn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j83xw")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ff3if"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86yb8"]
+radius = 8.0
+
+[node name="Drill" type="Node2D" unique_id=1042898745]
+
+[node name="DrillEnemy" type="CharacterBody2D" parent="." unique_id=270229938]
+position = Vector2(0, -8)
+script = ExtResource("1_iblxw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DrillEnemy" unique_id=860884896]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_86yb8")
+autoplay = "default"
+frame_progress = 0.072633415
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrillEnemy" unique_id=740821336]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_ff3if")
+debug_color = Color(0.42303795, 0.5320696, 0.76493245, 0.41960785)
+
+[node name="Area2D" type="Area2D" parent="DrillEnemy" unique_id=2006529845 groups=["Player"]]
+position = Vector2(0, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DrillEnemy/Area2D" unique_id=1334741092]
+shape = SubResource("CircleShape2D_86yb8")
+
+[connection signal="body_entered" from="DrillEnemy/Area2D" to="DrillEnemy" method="_on_area_2d_body_entered"]

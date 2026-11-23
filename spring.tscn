@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://cwpup5unx6jpw"]
+
+[ext_resource type="Script" uid="uid://crbullaphcxj0" path="res://spring.gd" id="1_boyml"]
+[ext_resource type="Texture2D" uid="uid://nkb68smqqfq4" path="res://platform stuff/kenney_pixel-platformer/Tilemap/tilemap_packed.png" id="1_ka4py"]
+[ext_resource type="AudioStream" uid="uid://xsry8s7uqrd1" path="res://sound/sfx_jump-high.ogg" id="3_hpppm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86yb8"]
+radius = 3.1622777
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boyml"]
+atlas = ExtResource("1_ka4py")
+region = Rect2(126, 90, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpppm"]
+atlas = ExtResource("1_ka4py")
+region = Rect2(144, 90, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86yb8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_boyml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpppm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6knhs"]
+radius = 4.1231055
+
+[node name="Node2D" type="Node2D" unique_id=1747111890]
+
+[node name="Spring" type="CharacterBody2D" parent="." unique_id=790728250]
+script = ExtResource("1_boyml")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring" unique_id=825345484]
+z_index = 1
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_86yb8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Spring" unique_id=957707414]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_86yb8")
+autoplay = "default"
+frame = 1
+frame_progress = 0.06175293
+
+[node name="Bounce" type="Area2D" parent="Spring/AnimatedSprite2D" unique_id=1717585548]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spring/AnimatedSprite2D/Bounce" unique_id=1201625203]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_6knhs")
+debug_color = Color(0.6954882, 0.42349836, 0.6766258, 0.41960785)
+
+[node name="SpringSound" type="AudioStreamPlayer" parent="Spring" unique_id=2143682876]
+stream = ExtResource("3_hpppm")
+
+[connection signal="body_entered" from="Spring/AnimatedSprite2D/Bounce" to="Spring" method="_on_bounce_body_entered"]
