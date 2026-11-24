@@ -7,14 +7,19 @@ const JUMP_VELOCITY = -300.0
 @onready var coin_sound: AudioStreamPlayer = $CoinSound
 @onready var jump_sound: AudioStreamPlayer = $JumpSound
 @onready var hurt_sound: AudioStreamPlayer = $HurtSound
-
-
-
 var health := 3
-
 var score := 0
-@onready var score_label: Label = $CanvasLayer/ScoreLabel
 
+#minimizes delay between when player touches the spring and launches ^_^
+var launch_timer := 0.0
+
+func launch(new_velocity: Vector2, lock_time := 0.25) -> void:
+	velocity = new_velocity
+	# Only lock horizontal control for springs that push sideways
+	launch_timer = lock_time if abs(new_velocity.x) > 1.0 else 0.0
+
+@onready var score_label: Label = $CanvasLayer/ScoreLabel
+#on screen coin label connecting to when a player collects a coin
 func _ready() -> void:
 	score_label.text = "Coins: 0"
 
@@ -31,24 +36,28 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jump_sound.play()
 		velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
+	
+	#movement direction & spring launch physics
+	launch_timer -= delta
+	var direction := Input.get_axis("left", "right")
+	if launch_timer > 0:
+		pass  # keep launch momentum
+	elif direction:
 		velocity.x = direction * SPEED
+		sprite_2d.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
 	move_and_slide()
 
-
+#Flips character left or right depending on movement direction ^_^
 	var isLeft = velocity.x > 0
 	sprite_2d.flip_h = isLeft
 
+#Coin collecting function and sound *cha ching* ^_^
 func _on_pickup_area_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Coin"):
 		area.get_parent().queue_free()
@@ -58,7 +67,7 @@ func _on_pickup_area_area_entered(area: Area2D) -> void:
 		
 		
 		
-		#Player damage
+#Player damage
 var invincible := false
 
 func take_damage(amount: int) -> void:

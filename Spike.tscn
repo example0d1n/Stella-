@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dvuyc4enqyge0"]
+
+[ext_resource type="Script" uid="uid://pmnstkofxcg4" path="res://spike.gd" id="1_fgk57"]
+[ext_resource type="Texture2D" uid="uid://b2itstmqsk4mr" path="res://platform stuff/kenney_pixel-platformer/Tiles/tile_0068.png" id="2_35xt7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6knhs"]
+size = Vector2(14, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6co60"]
+size = Vector2(18, 9)
+
+[node name="Node2D" type="Node2D" unique_id=1776540603]
+
+[node name="Spike" type="CharacterBody2D" parent="." unique_id=1311318748 groups=["Player"]]
+script = ExtResource("1_fgk57")
+
+[node name="Sprite2D" type="Sprite2D" parent="Spike" unique_id=1886271738]
+texture_filter = 1
+texture = ExtResource("2_35xt7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike" unique_id=638257291]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_6knhs")
+
+[node name="Area2D" type="Area2D" parent="Spike" unique_id=1406030257 groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spike/Area2D" unique_id=960662120]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_6co60")
+debug_color = Color(0.8987605, 0.26658243, 0.4350296, 0.41960785)
+
+[connection signal="body_entered" from="Spike/Area2D" to="Spike" method="_on_area_2d_body_entered"]
