@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+#Only checks for coin.tcsn so the player wont be flagged as a coin ^_^
 @export_file("*.tscn") var next_level: String
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

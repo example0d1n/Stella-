@@ -35,6 +35,16 @@ shadow_size = 20
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dstia"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_p3j2p"]
+font = ExtResource("2_uwwrv")
+font_size = 100
+outline_color = Color(0.0253638, 0.0253638, 0.025363795, 1)
+shadow_color = Color(0.0142752165, 0.014275218, 0.014275218, 0)
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_shadow_0/offset = Vector2(2, 4)
+stacked_shadow_0/outline_size = 4
+
 [node name="main_manu" type="Control" unique_id=2002269047]
 layout_mode = 3
 anchors_preset = 15
@@ -137,13 +147,15 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_constants/shadow_offset_y = 1000
 theme_override_fonts/font = ExtResource("2_uwwrv")
 theme_override_font_sizes/font_size = 70
-text = "Shooting Star"
+text = "Stella Dash"
+label_settings = SubResource("LabelSettings_p3j2p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Mainmenu_music" type="AudioStreamPlayer" parent="." unique_id=1132284959]
 stream = ExtResource("4_6u1ow")
 autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_2_pressed"]

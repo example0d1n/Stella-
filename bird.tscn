@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bldo6oywsequm"]
+
+[ext_resource type="Texture2D" uid="uid://hwsbgopt8wom" path="res://platform stuff/kenney_pixel-platformer/Tiles/Characters/tile_0024.png" id="1_j88tq"]
+[ext_resource type="Texture2D" uid="uid://dim4n3tgvcgjd" path="res://platform stuff/kenney_pixel-platformer/Tiles/Characters/tile_0025.png" id="2_cchwj"]
+[ext_resource type="Texture2D" uid="uid://duoocg3udhmc6" path="res://platform stuff/kenney_pixel-platformer/Tiles/Characters/tile_0026.png" id="3_6ljjq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axl6x"]
+atlas = ExtResource("1_j88tq")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yr30m"]
+atlas = ExtResource("2_cchwj")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o5yp"]
+atlas = ExtResource("3_6ljjq")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86yb8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axl6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yr30m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2o5yp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_86yb8"]
+
+[node name="Node2D" type="Node2D" unique_id=23007192]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1064772334]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=522369663]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_86yb8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=71683197]
+shape = SubResource("CircleShape2D_86yb8")
