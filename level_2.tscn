@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvc7d5rl513i7"]
 
-[ext_resource type="PackedScene" uid="uid://bs365p52tmn7g" path="res://character.tscn" id="1_1y8me"]
+[ext_resource type="Script" uid="uid://g2sppjrhga8c" path="res://level_2.gd" id="1_ehv2h"]
 [ext_resource type="Texture2D" uid="uid://jcjb6fmj3ogr" path="res://platform stuff/kenney_pixel-platformer/Tiles/Backgrounds/tile_0000.png" id="2_n7ypv"]
 [ext_resource type="Texture2D" uid="uid://ccv803675e78x" path="res://platform stuff/kenney_pixel-platformer/Tilemap/tilemap.png" id="3_0s5r2"]
 [ext_resource type="PackedScene" uid="uid://cwpup5unx6jpw" path="res://spring.tscn" id="4_7j8ne"]
@@ -246,9 +246,7 @@ pattern_2 = SubResource("TileMapPattern_7j8ne")
 pattern_3 = SubResource("TileMapPattern_7dov7")
 
 [node name="level2" type="Node" unique_id=1550978574]
-
-[node name="Player" parent="." unique_id=2087117682 instance=ExtResource("1_1y8me")]
-position = Vector2(60, 545)
+script = ExtResource("1_ehv2h")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=859160394]
 anchors_preset = 15
@@ -524,3 +522,11 @@ parameters/looping = true
 
 [node name="Node2D" parent="." unique_id=455805000 instance=ExtResource("9_ehv2h")]
 position = Vector2(63, 99)
+
+[node name="Flag" parent="Node2D" index="0" unique_id=1512812013]
+next_level = "uid://cektvonyaknkn"
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1016453802]
+position = Vector2(71, 537)
+
+[editable path="Node2D"]

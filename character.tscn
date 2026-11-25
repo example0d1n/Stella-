@@ -64,7 +64,7 @@ script = ExtResource("1_pjt0s")
 
 [node name="PickupArea" type="Area2D" parent="Player" unique_id=2121570262]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickupArea" unique_id=1707110284 groups=["Coin"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PickupArea" unique_id=1707110284]
 shape = SubResource("CircleShape2D_v8kj3")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1205224136]
@@ -73,7 +73,7 @@ sprite_frames = SubResource("SpriteFrames_6knhs")
 animation = &"walk"
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1056920585]
-zoom = Vector2(4, 4)
+zoom = Vector2(6, 6)
 process_callback = 0
 position_smoothing_enabled = true
 
@@ -94,6 +94,22 @@ grow_horizontal = 0
 theme = SubResource("Theme_pjt0s")
 text = "Coins: 0"
 label_settings = SubResource("LabelSettings_86yb8")
+
+[node name="CoinsLeftLabel" type="Label" parent="Player/CanvasLayer" unique_id=209513773]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Coins Left: "
+
+[node name="Message" type="Label" parent="Player/CanvasLayer" unique_id=1815807735]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
 
 [node name="CoinSound" type="AudioStreamPlayer" parent="Player" unique_id=786368504]
 stream = ExtResource("4_wfnr8")

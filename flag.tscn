@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b6nyg02halc5" path="res://platform stuff/kenney_pixel-platformer/Tiles/tile_0112.png" id="2_ukulb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i2041"]
-radius = 5.0
-height = 13.990978
+radius = 2.034605
+height = 7.994845
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ts4f7"]
 atlas = ExtResource("1_amn8n")
@@ -31,7 +31,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy4tn"]
-size = Vector2(16, 11)
+size = Vector2(9, 7)
 
 [node name="Node2D" type="Node2D" unique_id=455805000]
 
@@ -47,13 +47,12 @@ shape = SubResource("CapsuleShape2D_i2041")
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ff3if")
 autoplay = "default"
-frame_progress = 0.7977215
+frame_progress = 0.5357287
 
-[node name="Area2D" type="Area2D" parent="Flag" unique_id=1666595700]
+[node name="Area2D" type="Area2D" parent="Flag" unique_id=1666595700 groups=["Player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag/Area2D" unique_id=703733472]
-position = Vector2(0, -1.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flag/Area2D" unique_id=703733472 groups=["Player"]]
 shape = SubResource("RectangleShape2D_xy4tn")
 debug_color = Color(0.9100212, 0.24472407, 0.44079554, 0.41960785)
 
-[connection signal="area_entered" from="Flag/Area2D" to="Flag" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Flag/Area2D" to="Flag" method="_on_area_2d_body_entered"]

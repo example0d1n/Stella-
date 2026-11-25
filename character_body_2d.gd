@@ -7,6 +7,11 @@ const JUMP_VELOCITY = -300.0
 @onready var coin_sound: AudioStreamPlayer = $CoinSound
 @onready var jump_sound: AudioStreamPlayer = $JumpSound
 @onready var hurt_sound: AudioStreamPlayer = $HurtSound
+
+var coins_left := 0
+var message_id := 0
+@onready var coins_left_label: Label = $CanvasLayer/CoinsLeftLabel
+@onready var message_label: Label = $CanvasLayer/Message
 var health := 3
 var score := 0
 
@@ -22,6 +27,21 @@ func launch(new_velocity: Vector2, lock_time := 0.25) -> void:
 #on screen coin label connecting to when a player collects a coin
 func _ready() -> void:
 	score_label.text = "Coins: 0"
+	coins_left = get_tree().get_nodes_in_group("Coin").size()
+	update_coins_left()
+
+func update_coins_left() -> void:
+	coins_left_label.text = "Coins left: %d" % coins_left
+
+func show_message(text: String, seconds := 2.0) -> void:
+	message_id += 1
+	var my_id := message_id
+	message_label.text = text
+	message_label.visible = true
+	await get_tree().create_timer(seconds).timeout
+	if my_id == message_id:  # don't hide a newer message early
+		message_label.visible = false
+
 
 
 func _physics_process(delta: float) -> void:
@@ -64,7 +84,8 @@ func _on_pickup_area_area_entered(area: Area2D) -> void:
 		coin_sound.play()
 		score += 1
 		score_label.text = "Coins: %d" % score
-		
+		coins_left -= 1
+		update_coins_left()
 		
 		
 #Player damage
