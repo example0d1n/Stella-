@@ -1,4 +1,5 @@
 extends Node
+@onready var fade: CanvasLayer = $Fade
 
 
 # Called when the node enters the scene tree for the first time.
@@ -8,3 +9,4 @@ func _ready() -> void:
 	var player := PLAYER_SCENE.instantiate()
 	add_child(player)
 	player.global_position = $SpawnPoint.global_position
+	#fade.fade(1.0, 1.5)

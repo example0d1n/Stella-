@@ -481,6 +481,7 @@ script = ExtResource("1_bmsap")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=406358287]
 stream = ExtResource("2_rqrji")
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1536985512]

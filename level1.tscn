@@ -304,6 +304,7 @@ layer_1/tile_data = PackedInt32Array(2228225, 131078, 6, 2228226, 196614, 6, 216
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1575884437]
 stream = ExtResource("4_v38iq")
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [node name="Drill" parent="." unique_id=1042898745 instance=ExtResource("6_crycw")]

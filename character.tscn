@@ -1,34 +1,23 @@
 [gd_scene format=3 uid="uid://bs365p52tmn7g"]
 
 [ext_resource type="Script" uid="uid://j5khb4fmltq5" path="res://character_body_2d.gd" id="1_pjt0s"]
-[ext_resource type="Texture2D" uid="uid://c21xn3q7qfnyb" path="res://platform stuff/kenney_pixel-platformer/Tilemap/tilemap-characters_packed.png" id="2_pjt0s"]
+[ext_resource type="Texture2D" uid="uid://bqo4s3bp6la42" path="res://photo/Screenshot_2026-11-26_at_10.31.14_AM-removebg-preview.png" id="3_qi5as"]
 [ext_resource type="FontFile" uid="uid://b4b7ib47mhq6d" path="res://fonts/Pixel Game.otf" id="3_wa5vi"]
 [ext_resource type="Texture2D" uid="uid://opjsrik0may1" path="res://tile_0151.png" id="3_wdpcj"]
+[ext_resource type="Texture2D" uid="uid://bk5mts0n37m1g" path="res://photo/Screenshot_2026-11-26_at_10.31.29_AM-removebg-preview.png" id="4_jb3kq"]
 [ext_resource type="Texture2D" uid="uid://deng70rwjhjub" path="res://tile_0152.png" id="4_qi5as"]
-[ext_resource type="AudioStream" uid="uid://dt0imk1w3ry56" path="res://sound/sfx_coin.ogg" id="4_wfnr8"]
-[ext_resource type="AudioStream" uid="uid://00hu0ksm7h53" path="res://sound/sfx_jump.ogg" id="5_0qfo5"]
-[ext_resource type="AudioStream" uid="uid://begvldkf2miuu" path="res://sound/sfx_hurt.ogg" id="6_yxww1"]
+[ext_resource type="AudioStream" uid="uid://dt0imk1w3ry56" path="res://sfx/sfx_coin.ogg" id="4_wfnr8"]
+[ext_resource type="AudioStream" uid="uid://00hu0ksm7h53" path="res://sfx/sfx_jump.ogg" id="5_0qfo5"]
+[ext_resource type="AudioStream" uid="uid://begvldkf2miuu" path="res://sfx/sfx_hurt.ogg" id="6_yxww1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v8kj3"]
 radius = 15.033297
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wa5vi"]
-atlas = ExtResource("2_pjt0s")
-region = Rect2(0, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wfnr8"]
-atlas = ExtResource("2_pjt0s")
-region = Rect2(0, 0, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pjt0s"]
-atlas = ExtResource("2_pjt0s")
-region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6knhs"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wa5vi")
+"texture": ExtResource("3_qi5as")
 }],
 "loop": 1,
 "name": &"default",
@@ -36,10 +25,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wfnr8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pjt0s")
+"texture": ExtResource("4_jb3kq")
 }],
 "loop": 1,
 "name": &"walk",
@@ -100,6 +86,7 @@ shape = SubResource("CircleShape2D_v8kj3")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1205224136]
 texture_filter = 1
+scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_6knhs")
 animation = &"walk"
 

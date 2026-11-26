@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://lfucr4wucveo"]
+
+[ext_resource type="Script" uid="uid://ot8qgaq6o08i" path="res://endingflag.gd" id="1_ce1wt"]
+[ext_resource type="Texture2D" uid="uid://dhgxegbythmva" path="res://platform stuff/kenney_pixel-platformer/Tiles/tile_0111.png" id="2_l5g6r"]
+[ext_resource type="Texture2D" uid="uid://b6nyg02halc5" path="res://platform stuff/kenney_pixel-platformer/Tiles/tile_0112.png" id="3_yfyrx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6knhs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2ssm"]
+atlas = ExtResource("2_l5g6r")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj1rh"]
+atlas = ExtResource("3_yfyrx")
+region = Rect2(0, 0, 18, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_86yb8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2ssm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj1rh")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Flag2_0" type="Node2D" unique_id=45131921]
+position = Vector2(-0.02532959, 0.15840149)
+
+[node name="endingflag" type="CharacterBody2D" parent="." unique_id=1598206469]
+script = ExtResource("1_ce1wt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="endingflag" unique_id=811026301]
+shape = SubResource("RectangleShape2D_6knhs")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="endingflag" unique_id=614392836]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_86yb8")
+
+[node name="Area2D" type="Area2D" parent="endingflag" unique_id=540867376]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="endingflag/Area2D" unique_id=1600766705]
+
+[connection signal="body_entered" from="endingflag/Area2D" to="endingflag" method="_on_area_2d_body_entered"]

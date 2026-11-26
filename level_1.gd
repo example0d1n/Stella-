@@ -3,12 +3,18 @@ extends Node
 #This should spawn the character in the same place of the
 # Marker2D otherwise known as "SpawnPoint" ^_^
 const PLAYER_SCENE := preload("res://character.tscn")
+#@onready var settings: Panel = $Settings
+
 
 func _ready() -> void:
 	var player := PLAYER_SCENE.instantiate()
 	add_child(player)
 	player.global_position = $SpawnPoint.global_position
 
+@onready var settings: Control = $Settings
+
+func _on_settings_button_pressed() -> void:
+	settings.visible = true
 
 # Called when the node enters the scene tree for the first time.
 
